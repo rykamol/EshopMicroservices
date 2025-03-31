@@ -1,21 +1,37 @@
-﻿using MediatR;
+﻿using BuildingBlocks.CQRS;
+using Catelog.API.Models;
+using MediatR;
+using System.Windows.Input;
 
 namespace Catelog.API.Products.CreateProduct
 {
-	public record CreateProductCommand (
+	public record CreateProductCommand(
 		string name,
 		List<string> category,
 		string description,
 		string imageFile,
-		decimal price) : IRequest<CreateProductResult>;
+		decimal price) : ICommand<CreateProductResult>;
 
 	public record CreateProductResult(Guid Guid);
-	internal class CreateProducCommandtHandler : IRequestHandler<CreateProductCommand, CreateProductResult>
+	internal class CreateProducCommandtHandler : ICommandHandler<CreateProductCommand, CreateProductResult>
 	{
-		public Task<CreateProductResult> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+		public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
 		{
 			//Business logic  
-			throw new NotImplementedException();
+			//Create a product entity from command object
+			var product = new Product
+			{
+				Name = command.name,
+				Category = command.category,
+				Description = command.description,
+				ImageFile = command.imageFile,
+				Price = command.price
+			};
+			//save to database
+
+			//return the create product result 
+
+			return new CreateProductResult(Guid.NewGuid());
 		}
 	}
 }
