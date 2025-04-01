@@ -1,7 +1,4 @@
-﻿using BuildingBlocks.CQRS;
-using Catelog.API.Models;
-using MediatR;
-using System.Windows.Input;
+﻿using Catelog.API.Models;
 
 namespace Catelog.API.Products.CreateProduct
 {
@@ -13,7 +10,7 @@ namespace Catelog.API.Products.CreateProduct
 		decimal price) : ICommand<CreateProductResult>;
 
 	public record CreateProductResult(Guid Guid);
-	internal class CreateProducCommandtHandler : ICommandHandler<CreateProductCommand, CreateProductResult>
+	internal class CreateProducCommandtHandler(IDocumentSession session) : ICommandHandler<CreateProductCommand, CreateProductResult>
 	{
 		public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
 		{
@@ -28,10 +25,11 @@ namespace Catelog.API.Products.CreateProduct
 				Price = command.price
 			};
 			//save to database
-
+			session.Store(product);
+			await session.SaveChangesAsync(cancellationToken);
 			//return the create product result 
 
-			return new CreateProductResult(Guid.NewGuid());
+			return new CreateProductResult(product.Id);
 		}
 	}
 }
