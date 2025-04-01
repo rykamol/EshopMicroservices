@@ -12,6 +12,7 @@
 			   {
 				   var result = await sender.Send(new GetProductByIdQuery(id));
 				   var response = result.Adapt<GetProductsByIdResponse>();
+
 				   return Results.Ok(response);
 			   })
 		   .WithName("GetProductById")

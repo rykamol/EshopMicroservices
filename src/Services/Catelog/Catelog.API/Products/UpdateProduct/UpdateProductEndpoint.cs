@@ -8,7 +8,7 @@
 		string imageFile,
 		decimal price);
 
-	public record UpdateProductResponse(Boolean isSuccess);
+	public record UpdateProductResponse(bool isSuccess);
 	public class UpdateProductEndpoint : ICarterModule
 	{
 		public void AddRoutes(IEndpointRouteBuilder app)

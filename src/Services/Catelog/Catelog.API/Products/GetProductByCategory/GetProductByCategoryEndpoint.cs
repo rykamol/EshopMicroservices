@@ -1,6 +1,9 @@
 ﻿namespace Catelog.API.Products.GetProductByCategory
 {
+	// this record is useless, added just to understand the standard steps to CQRS pattern.
+	//public record GetProductByCategoryRequest(string category);  
 	public record GetProductByCategoryResponse(IEnumerable<Product> Products);
+
 	public class GetProductByCategoryEndPoint : ICarterModule
 	{
 		public void AddRoutes(IEndpointRouteBuilder app)

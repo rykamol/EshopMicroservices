@@ -6,7 +6,6 @@
 	string description,
 	string imageFile,
 	decimal price);
-
 	public record CreateProductResponse(Guid Guid);
 
 	public class CreateProductEndpoint : ICarterModule
@@ -17,7 +16,6 @@
 				async (CreateProductRequest request, ISender sender) =>
 			{
 				var command = request.Adapt<CreateProductCommand>();
-
 				var result = await sender.Send(command);
 				var response = result.Adapt<CreateProductResponse>();
 
