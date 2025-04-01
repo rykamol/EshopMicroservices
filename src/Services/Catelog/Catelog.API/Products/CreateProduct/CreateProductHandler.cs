@@ -1,6 +1,4 @@
-﻿using Catelog.API.Models;
-
-namespace Catelog.API.Products.CreateProduct
+﻿namespace Catelog.API.Products.CreateProduct
 {
 	public record CreateProductCommand(
 		string name,
@@ -10,6 +8,7 @@ namespace Catelog.API.Products.CreateProduct
 		decimal price) : ICommand<CreateProductResult>;
 
 	public record CreateProductResult(Guid Guid);
+
 	internal class CreateProducCommandtHandler(IDocumentSession session) : ICommandHandler<CreateProductCommand, CreateProductResult>
 	{
 		public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)

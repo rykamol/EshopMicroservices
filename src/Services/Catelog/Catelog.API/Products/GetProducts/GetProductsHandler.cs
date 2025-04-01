@@ -1,10 +1,4 @@
-﻿using Catelog.API.Models;
-using Marten.Internal;
-using Marten.Linq.QueryHandlers;
-using System.Data.Common;
-using Weasel.Postgresql;
-
-namespace Catelog.API.Products.GetProducts
+﻿namespace Catelog.API.Products.GetProducts
 {
 	public record GetProductsQuery() : IQuery<GetProductsResult>;
 	public record GetProductsResult(IEnumerable<Product> Products);

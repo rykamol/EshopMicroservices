@@ -8,6 +8,7 @@
 	decimal price);
 
 	public record CreateProductResponse(Guid Guid);
+
 	public class CreateProductEndpoint : ICarterModule
 	{
 		public void AddRoutes(IEndpointRouteBuilder app)
