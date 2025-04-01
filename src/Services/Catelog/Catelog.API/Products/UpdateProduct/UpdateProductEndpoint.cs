@@ -1,8 +1,4 @@
-﻿
-using Catelog.API.Models;
-using Catelog.API.Products.CreateProduct;
-
-namespace Catelog.API.Products.UpdateProduct
+﻿namespace Catelog.API.Products.UpdateProduct
 {
 	public record UpdateProductRequest(
 		Guid id,
