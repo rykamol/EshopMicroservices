@@ -1,13 +1,9 @@
 ﻿namespace Catelog.API.Products.CreateProduct
 {
-	public record CreateProductCommand(
-		string Name,
-		List<string> Category,
-		string Description,
-		string ImageFile,
-		decimal Price) : ICommand<CreateProductResult>;
+	public record CreateProductCommand(string Name, List<string> Category, string Description, string ImageFile, decimal Price)
+		: ICommand<CreateProductResult>;
 
-	public record CreateProductResult(Guid Guid);
+	public record CreateProductResult(Guid Id);
 
 	public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
 	{
@@ -20,24 +16,14 @@
 		}
 	}
 
-	internal class CreateProducCommandtHandler(
-		IDocumentSession session,
-		ILogger<CreateProducCommandtHandler> logger,
-		IValidator<CreateProductCommand> validator) : ICommandHandler<CreateProductCommand, CreateProductResult>
+	internal class CreateProducCommandtHandler(IDocumentSession session, ILogger<CreateProducCommandtHandler> logger)
+		: ICommandHandler<CreateProductCommand, CreateProductResult>
 	{
 		public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
 		{
 			//Write log
 			logger.LogInformation("CreateProducCommandtHandler.Handle called with {command}", command);
 
-			var validationResult = await validator.ValidateAsync(command, cancellationToken);
-			var errors = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
-			if (errors.Any())
-			{
-				throw new ValidationException(errors.FirstOrDefault());
-			}
-
-			//Create a product entity from command object
 			var product = new Product
 			{
 				Name = command.Name,
