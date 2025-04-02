@@ -1,14 +1,8 @@
 ﻿namespace Catelog.API.Products.UpdateProduct
 {
-	public record UpdateProductRequest(
-		Guid id,
-		string name,
-		List<string> category,
-		string description,
-		string imageFile,
-		decimal price);
-
+	public record UpdateProductRequest(Guid Id, string Name, List<string> Category, string Description, string ImageFile, decimal Price);
 	public record UpdateProductResponse(bool isSuccess);
+
 	public class UpdateProductEndpoint : ICarterModule
 	{
 		public void AddRoutes(IEndpointRouteBuilder app)
