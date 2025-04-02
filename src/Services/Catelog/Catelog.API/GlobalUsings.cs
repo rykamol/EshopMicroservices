@@ -5,3 +5,5 @@ global using MediatR;
 global using Marten;
 global using Catelog.API.Exceptions;
 global using Catelog.API.Models;
+global using FluentValidation;
+ 
