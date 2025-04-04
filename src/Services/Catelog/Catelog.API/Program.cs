@@ -23,20 +23,21 @@ builder.Services.AddMarten(opt =>
 
 }).UseLightweightSessions();
 
+//Seeding data to catalog db
 if (builder.Environment.IsDevelopment())
 	builder.Services.InitializeMartenWith<CatalogInitialData>();
 
-
+//Register Custom exception Handling
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
+//Register health check service
 builder.Services.AddHealthChecks()
 	.AddNpgSql(builder.Configuration.GetConnectionString("Database"));
 
-var app = builder.Build();
-//app.MapGet("/", () => "Hello World!");
 
 
 
+var app = builder.Build(); 
 //Configure the HTTP request pipline
 app.MapCarter();
 
