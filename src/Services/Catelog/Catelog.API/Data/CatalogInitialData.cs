@@ -6,7 +6,7 @@ namespace Catelog.API.Data
 	{
 		public async Task Populate(IDocumentStore store, CancellationToken cancellation)
 		{
-			var session = store.LightweightSession();
+			using var session = store.LightweightSession();
 			if (await session.Query<Product>().AnyAsync())
 			{
 				return;

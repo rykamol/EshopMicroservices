@@ -3,5 +3,12 @@ version: '3.4'
 services:
   catalogdb:
     image: postgres
+  catelog.api:
+    image: ${DOCKER_REGISTRY-}catelogapi
+    build:
+      context: .
+      dockerfile: src/Services/Catelog/Catelog.API/Dockerfile
+
 volumes:
   postgres_catalog:
+
