@@ -7,7 +7,7 @@
 		public StoreBasketCommandValidator()
 		{
 			RuleFor(x => x.Cart).NotNull().WithMessage("Cart can not be null!");
-			RuleFor(x => x.Cart.UserName).NotNull().WithMessage("Username is required!");
+			RuleFor(x => x.Cart.UserName).NotNull().NotEmpty().WithMessage("Username is required!");
 		}
 	}
 
