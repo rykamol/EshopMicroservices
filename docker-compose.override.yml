@@ -18,7 +18,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=CatalogDb
+      - POSTGRES_DB=BasketDb
     restart: always
     ports:
       - "5433:5432"
