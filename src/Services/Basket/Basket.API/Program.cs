@@ -1,3 +1,4 @@
+using BuildingBlocks.Exceptions.Handler;
 using JasperFx;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,9 +22,12 @@ builder.Services.AddMarten(opt =>
 }).UseLightweightSessions();
 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
 
 var app = builder.Build();
 //Configure the HTTP request
 app.MapCarter();
+app.UseExceptionHandler(e => { });
 
 app.Run();
