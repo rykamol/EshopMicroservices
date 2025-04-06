@@ -1,5 +1,6 @@
 using BuildingBlocks.Exceptions.Handler;
 using JasperFx;
+using Microsoft.Extensions.Caching.Distributed;
 
 var builder = WebApplication.CreateBuilder(args);
 //Add services to the container
@@ -22,6 +23,12 @@ builder.Services.AddMarten(opt =>
 }).UseLightweightSessions();
 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+builder.Services.AddScoped<IBasketRepository>(provider =>
+{
+	var basketRepository = provider.GetRequiredService<BasketRepository>(); ;
+	return new CacheBasketRepository(basketRepository,provider.GetRequiredService<IDistributedCache>());
+});
+
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 
