@@ -12,6 +12,4 @@
 			return new GetBasketResult(basket);
 		}
 	}
-
-
 }
