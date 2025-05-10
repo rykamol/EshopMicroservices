@@ -36,6 +36,22 @@ namespace Discount.Grpc.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Coupons");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 20,
+                            Description = "Get $20 off on premium wireless headphones.",
+                            ProductName = "Wireless Headphones"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 5,
+                            Description = "Save $5 on any smartphone case.",
+                            ProductName = "Smartphone Case"
+                        });
                 });
 #pragma warning restore 612, 618
         }
