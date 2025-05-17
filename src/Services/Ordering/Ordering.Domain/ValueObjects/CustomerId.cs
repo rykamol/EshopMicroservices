@@ -2,9 +2,9 @@
 {
 	public record CustomerId
 	{
-		private Guid Value;
+		public Guid Value { get; }
 
-        public CustomerId(Guid value) => Value = value; 
+        private CustomerId(Guid value) => Value = value; 
         public static CustomerId Of(Guid value)
         {
             ArgumentNullException.ThrowIfNull(value);
