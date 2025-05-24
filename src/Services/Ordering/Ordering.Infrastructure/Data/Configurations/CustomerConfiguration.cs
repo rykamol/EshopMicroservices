@@ -6,7 +6,7 @@ using Ordering.Domain.ValueObjects;
 
 namespace Ordering.Infrastructure.Data.Configurations
 {
-	internal class CustomerConfiguration : IEntityTypeConfiguration<Customer>
+	public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 	{
 		public void Configure(EntityTypeBuilder<Customer> builder)
 		{
