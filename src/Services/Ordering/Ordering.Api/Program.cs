@@ -1,6 +1,5 @@
 using Ordering.Application;
 using Ordering.Api;
-using Ordering.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
