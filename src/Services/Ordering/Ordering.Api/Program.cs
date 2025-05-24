@@ -1,5 +1,14 @@
+using Ordering.Application;
+using Ordering.Api;
+using Ordering.Application;
+
 var builder = WebApplication.CreateBuilder(args);
+
 //Add services to the container
+builder.Services
+    .AddApplicationServices()
+    .AddInfrastructureServices(builder.Configuration)
+    .AddApiServices();
 
 
 
