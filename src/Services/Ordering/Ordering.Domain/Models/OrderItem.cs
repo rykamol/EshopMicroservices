@@ -8,7 +8,7 @@
 			OrderId = orderId;
 			ProductId = productId;
 			Quantity = quantity;
-			Price = price;
+			Price = price; 
 		}
 		public OrderId OrderId { get; private set; } = default;
 		public ProductId ProductId { get; private set; } = default;
