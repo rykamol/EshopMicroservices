@@ -33,11 +33,11 @@ namespace Ordering.Infrastructure.Data.Interceptors
                   .Where(a => a.Entity.DomainEvents.Any())
                   .Select(a => a.Entity);
 
-            var domainEvents = aggregates.Select(a => a.DomainEvents).ToList();
+            var domainEvents = aggregates.SelectMany(a => a.DomainEvents).ToList();
 
             aggregates.ToList().ForEach(a => a.ClearDomainEvents());
 
-            foreach (var domainEvent in domainEvents)
+            foreach (var domainEvent in domainEvents) 
             {
                 await mediator.Publish(domainEvent);
             }

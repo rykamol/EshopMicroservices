@@ -12,7 +12,7 @@ namespace Ordering.Application
 
             //Add srvices to the container.
 
-            services.AddScoped<ISaveChangesInterceptor, SaveChangesInterceptor>();
+            services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
             services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor >();
 
             services.AddDbContext<ApplicationDbContext>((sp,options) =>
